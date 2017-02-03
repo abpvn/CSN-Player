@@ -66,7 +66,7 @@ class CSNPlayer {
                 this.sourcelabel = [];
                 Object.keys(option.music.sources).map((item, index) => {
                     var check=option.music.sources[item].indexOf('.mp3') > -1;
-                    if(/Firefox\/51.0/.test(navigator.userAgent)){
+                    if(/Firefox\/51.0/.test(navigator.userAgent)&&!this.isMobile){
                         check=option.music.sources[item].indexOf('.mp3') > -1||option.music.sources[item].indexOf('.flac') > -1;
                     }
                     if (check) {
