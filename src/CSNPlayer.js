@@ -60,14 +60,21 @@ class CSNPlayer {
         this.playIndex = Object.prototype.toString.call(option.music) === '[object Array]' ? 0 : -1;
         this.hasPlayList = option.hasPlayList;
         this.sourcelabel = [];
+        this.canPlayType = function (audio_type) {
+            var a = document.createElement('audio');
+            return !!(a.canPlayType && a.canPlayType('audio/'+audio_type+';').replace(/no/, ''));
+        };
         this.buildMultiSource = function (option) {
             this.multisource = option.music.sources ? true : false;
             if (this.multisource) {
                 this.sourcelabel = [];
                 Object.keys(option.music.sources).map((item, index) => {
-                    var check=option.music.sources[item].indexOf('.mp3') > -1;
-                    if(/Firefox\/51.0/.test(navigator.userAgent)&&!this.isMobile){
-                        check=option.music.sources[item].indexOf('.mp3') > -1||option.music.sources[item].indexOf('.flac') > -1;
+                    var check = option.music.sources[item].indexOf('.mp3') > -1;
+                    if (this.canPlayType('flac')) {
+                        check = check || option.music.sources[item].indexOf('.flac') > -1;
+                    }
+                    if (this.canPlayType('mp4')) {
+                        check = check || option.music.sources[item].indexOf('.m4a') > -1;
                     }
                     if (check) {
                         if (!option.music.url) {
@@ -568,7 +575,7 @@ class CSNPlayer {
             });
 
             // audio download error: an error occurs
-            this.audio.addEventListener('error', () => {
+            this.audio.addEventListener('error', (e) => {         
                 this.element.getElementsByClassName('csnplayer-author')[0].innerHTML = ` - Error happens ╥﹏╥`;
                 this.trigger('pause');
             });
