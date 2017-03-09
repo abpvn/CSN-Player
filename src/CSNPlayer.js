@@ -32,7 +32,22 @@ class CSNPlayer {
                 </svg>
             `;
         };
+        this.sendGaEvent = function (type, label) {
+            if (this.currentEvent === 'undefined' || this.currentEvent !== type) {
+                this.currentEvent = type;
+                try {
+                    ga('send', 'event', {
+                        eventCategory: 'CSN Player',
+                        eventType: type,
+                        eventLabel: label,
+                        transport: 'beacon'
+                    });
+                } catch (e) {
+                    console.error('You are not ussing Google Analytics. EventDetail: type: ' + type + ', label: ' + label);
+                }
+            }
 
+        };
         this.isMobile = /mobile/i.test(window.navigator.userAgent);
         //this.isMobile=false;
         // compatibility: some mobile browsers don't suppose autoplay
@@ -62,7 +77,7 @@ class CSNPlayer {
         this.sourcelabel = [];
         this.canPlayType = function (audio_type) {
             var a = document.createElement('audio');
-            return !!(a.canPlayType && a.canPlayType('audio/'+audio_type+';').replace(/no/, ''));
+            return !!(a.canPlayType && a.canPlayType('audio/' + audio_type + ';').replace(/no/, ''));
         };
         this.buildMultiSource = function (option) {
             this.multisource = option.music.sources ? true : false;
@@ -171,6 +186,9 @@ class CSNPlayer {
             this.event[eventTypes[i]] = [];
         }
         this.trigger = (type) => {
+            if (typeof this.option.ga !== 'undefined' && this.option.ga) {
+                this.sendGaEvent(type, this.option.music.title + ' - ' + this.option.music.author);
+            }
             for (let i = 0; i < this.event[type].length; i++) {
                 this.event[type][i]();
             }
@@ -314,6 +332,9 @@ class CSNPlayer {
                 this.option.music.url = option.music.sources[this.sourcelabel[source_label]];
                 this.setMusic(0);
                 this.audio.currentTime = currentTime;
+                if (typeof this.option.ga !== 'undefined' && this.option.ga) {
+                    this.sendGaEvent('switchSource', this.option.music.title + ' - ' + this.option.music.author + ' [' + source_label + ']');
+                }
                 this.play();
             }
         };
@@ -575,7 +596,7 @@ class CSNPlayer {
             });
 
             // audio download error: an error occurs
-            this.audio.addEventListener('error', (e) => {         
+            this.audio.addEventListener('error', (e) => {
                 this.element.getElementsByClassName('csnplayer-author')[0].innerHTML = ` - Error happens ╥﹏╥`;
                 this.trigger('pause');
             });

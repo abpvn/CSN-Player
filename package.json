@@ -1,6 +1,6 @@
 {
   "name": "csnplayer",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "CSN Player for chiasenhac.us",
   "main": "dist/CSNPlayer.min.js",
   "scripts": {
