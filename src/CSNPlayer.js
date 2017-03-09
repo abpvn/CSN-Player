@@ -38,7 +38,7 @@ class CSNPlayer {
                 try {
                     ga('send', 'event', {
                         eventCategory: 'CSN Player',
-                        eventType: type,
+                        eventAction: type,
                         eventLabel: label,
                         transport: 'beacon'
                     });
