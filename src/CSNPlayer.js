@@ -43,7 +43,7 @@ class CSNPlayer {
                         transport: 'beacon'
                     });
                 } catch (e) {
-                    console.error('You are not ussing Google Analytics. EventDetail: type: ' + type + ', label: ' + label);
+                    console.error('You are not use Google Analytics. EventDetail: type: ' + type + ', label: ' + label);
                 }
             }
 
@@ -518,7 +518,7 @@ class CSNPlayer {
                 }
             }
             modeEle.innerHTML = this.getSVG(this.mode);
-            this.audio.loop = !((this.hasPlayList && this.mode === 'circulation') || this.multiple || this.mode === 'order' || this.mode === 'random');
+            this.audio.loop = this.isMobile||!((this.hasPlayList && this.mode === 'circulation') || this.multiple || this.mode === 'order' || this.mode === 'random');
         });
 
         // toggle menu control
@@ -657,7 +657,7 @@ class CSNPlayer {
             this.audio.volume = parseInt(this.element.getElementsByClassName('csnplayer-volume')[0].style.height) / 100;
 
             // loop
-            this.audio.loop = !((this.hasPlayList && this.mode === 'circulation') || this.multiple || this.mode === 'order' || this.mode === 'random');
+            this.audio.loop = this.isMobile||!((this.hasPlayList && this.mode === 'circulation') || this.multiple || this.mode === 'order' || this.mode === 'random');
 
             if (this.multiple) {
                 this.audios[indexMusic] = this.audio;
