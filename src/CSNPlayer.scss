@@ -147,13 +147,11 @@ $csnplayer-height-lrc: $csnplayer-height + $lrc-height - 6;
         padding: 4px 0;
         cursor: pointer !important;
         flex: 1;
-
         .csnplayer-bar {
             position: relative;
             height: 5px;
             width: 100%;
-            background: #cdcdcd;
-            padding-right: 10px;
+            background: #cdcdcd;            
             .csnplayer-loaded {
                 position: absolute;
                 left: 0;
