@@ -107,12 +107,18 @@ class CSNPlayer {
                         this.activeSource = localStorage['activeSource'];
                         option.music.url = option.music.sources[this.sourcelabel[localStorage['activeSource']]];
                     } else {
-                        this.activeSource = Object.keys(this.sourcelabel)[0];
+                        //Select highest quality
+                        var allSources=Object.keys(this.sourcelabel);
+                        if(allSources[allSources.length-2]){
+                             this.activeSource=allSources[allSources.length-2];
+                        }else{
+                             this.activeSource = Object.keys(this.sourcelabel)[0];
+                        }
+                        
                     }
                     if (this.activesource) {
                         this.activesource.innerHTML = this.activeSource;
                     }
-
                 }
             }
             return option;
