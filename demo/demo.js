@@ -10,7 +10,7 @@ var ap1 = new CSNPlayer({
     music: {
 		title: 'I Lab You',
 		author: 'Tiên Tiên',
-		sources: {"MP3_128kbps":"http:\/\/data.chiasenhac.com\/downloads\/1828\/5\/1827038-6fbab8ee\/128\/I%20Lab%20You%20-%20Tien%20Tien%20[128kbps_MP3].mp3","MP3_320kbps":"http:\/\/data.chiasenhac.com\/downloads\/1828\/5\/1827038-6fbab8ee\/320\/I%20Lab%20You%20-%20Tien%20Tien%20[320kbps_MP3].mp3","M4A_500kbps":"http:\/\/data.chiasenhac.com\/downloads\/1828\/5\/1827038-6fbab8ee\/m4a\/I%20Lab%20You%20-%20Tien%20Tien%20[500kbps_M4A].m4a","M4A_32kbps":"http:\/\/data.chiasenhac.com\/downloads\/1828\/5\/1827038-6fbab8ee\/32\/I%20Lab%20You%20-%20Tien%20Tien%20[32kbps_M4A].m4a"},
+		sources: {"MP3_128kbps":"http:\/\/data.chiasenhac.com\/downloads\/1828\/5\/1827038-6fbab8ee\/128\/I%20Lab%20You%20-%20Tien%20Tien%20[128kbps_MP3].mp3","MP3_320kbps":"http:\/\/data.chiasenhac.com\/downloads\/1828\/5\/1827038-6fbab8ee\/320\/I%20Lab%20You%20-%20Tien%20Tien%20[320kbps_MP3].mp3","M4A_500kbps":"http:\/\/data.chiasenhac.com\/downloads\/1828\/5\/1827038-6fbab8ee\/m4a\/I%20Lab%20You%20-%20Tien%20Tien%20[500kbps_M4A].m4a"},
 		pic: 'http://data.chiasenhac.com/data/cover/77/76886.jpg',
     }
 });
